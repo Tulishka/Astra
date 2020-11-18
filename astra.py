@@ -8,7 +8,7 @@ from stars import stars_update
 pygame.init()
 
 экран = pygame.display.set_mode(размерЭкрана)
-pygame.display.set_caption('Astra')
+pygame.display.set_caption('Astra ')
 
 часы = pygame.time.Clock()
 шрифт = pygame.font.SysFont("arial", 14)
