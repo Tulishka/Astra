@@ -14,7 +14,7 @@ class Zvezda:
 
 class GeneratorZvezd:
 
-    def __init__(self, s, p, d, sz, col):
+    def __init__(self, s, p, d, sz, col, bound=(0, ширинаЭкрана)):
         self.s = s
         self.p = p
         self.d = d
@@ -22,6 +22,7 @@ class GeneratorZvezd:
         self.dl = 0
         self.sz = sz
         self.col = col
+        self.bound=bound
 
         y = 0
         while y < высотаЭкрана:
@@ -50,19 +51,8 @@ class GeneratorZvezd:
 
     def spawn(self, y):
         for i in range(self.p):
-            z = Zvezda(random.randint(5, ширинаЭкрана - 5), y, self.s + random.randrange(self.s * 0.6) - self.s * 0.3)
+            z = Zvezda(random.randint(self.bound[0]+5, self.bound[1] - 5), y, self.s + random.randrange(self.s * 0.6) - self.s * 0.3)
             self.zvezdi.append(z)
         self.dl = 0
 
 
-gen = [
-    GeneratorZvezd(базоваяСкорость // 4,    1, 3, 1, (100, 100, 50)),
-    GeneratorZvezd(базоваяСкорость // 2,    1, 20, 2, (200, 200, 100)),
-    GeneratorZvezd(базоваяСкорость,         1, 40, 3, (240, 240, 200))
-]
-
-
-def stars_update(dt, экран):
-    for g in gen:
-        g.update(dt)
-        g.draw(экран)
